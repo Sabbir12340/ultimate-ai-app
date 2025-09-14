@@ -1,0 +1,9 @@
+/* style.css (placeholder) */
+body {
+  font-family: Arial, sans-serif;
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+#app { text-align: center; }
+button { padding: 0.6rem 1rem; cursor: pointer; }
