@@ -2,10 +2,9 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
 app.use(express.json());
 
-// Root route (Render এ লিংক ওপেন করলে কাজ করবে)
+// Root route → Render লিংক ওপেন করলে Not Found আর দেখাবে না
 app.get("/", (req, res) => {
   res.send("✅ Backend is running on Render!");
 });
@@ -14,7 +13,7 @@ app.get("/", (req, res) => {
 app.post("/api/chat", async (req, res) => {
   const { message } = req.body;
 
-  // শুধু ডেমো রেসপন্স
+  // ডেমো রেসপন্স (পরে এখানে AI API কল বসানো যাবে)
   res.json({
     reply: `You said: ${message}`,
   });
@@ -22,5 +21,5 @@ app.post("/api/chat", async (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
