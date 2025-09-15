@@ -1,24 +1,29 @@
-// server.js (placeholder)
-// Run: npm install && npm start
-const express = require('express');
-const path = require('path');
+// server.js
+import express from 'express';
+import cors from 'cors';
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve frontend static files (frontend is sibling of backend)
-app.use(express.static(path.join(__dirname, '..', 'frontend')));
+// Enable CORS for all origins
+app.use(cors());
+app.use(express.json());
 
-// Example API endpoint
-app.get('/api/hello', (req, res) => {
-  res.json({ message: 'Hello from backend!' });
+// Example API route for AI response
+app.post('/api/generate', (req, res) => {
+  const { prompt } = req.body;
+  if (!prompt) return res.status(400).json({ error: 'Prompt missing' });
+
+  // Sample AI response (replace with real AI logic later)
+  const response = `AI Response: ${prompt}`;
+  res.json({ result: response });
+});
+
+// Optional: simple health check
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'Backend is running' });
 });
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-/*
-NOTE:
-- Replace or extend this file with your actual backend code.
-- If you need additional npm packages, add them to package.json and run `npm install`.
-*/
