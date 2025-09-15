@@ -1,29 +1,26 @@
-// server.js
-import express from 'express';
-import cors from 'cors';
-
+const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Enable CORS for all origins
-app.use(cors());
+// Middleware
 app.use(express.json());
 
-// Example API route for AI response
-app.post('/api/generate', (req, res) => {
-  const { prompt } = req.body;
-  if (!prompt) return res.status(400).json({ error: 'Prompt missing' });
-
-  // Sample AI response (replace with real AI logic later)
-  const response = `AI Response: ${prompt}`;
-  res.json({ result: response });
+// Root route (Render এ লিংক ওপেন করলে কাজ করবে)
+app.get("/", (req, res) => {
+  res.send("✅ Backend is running on Render!");
 });
 
-// Optional: simple health check
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'Backend is running' });
+// Example API route
+app.post("/api/chat", async (req, res) => {
+  const { message } = req.body;
+
+  // শুধু ডেমো রেসপন্স
+  res.json({
+    reply: `You said: ${message}`,
+  });
 });
 
+// Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
