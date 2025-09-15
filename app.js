@@ -1,13 +1,27 @@
-// app.js (placeholder)
-document.getElementById('helloBtn').addEventListener('click', async () => {
+const generateBtn = document.getElementById('generateBtn');
+const promptInput = document.getElementById('prompt');
+const resultEl = document.getElementById('result');
+
+// Replace with your actual Render backend URL
+const BACKEND_URL = 'https://your-backend-on-render.onrender.com/api/generate';
+
+generateBtn.addEventListener('click', async () => {
+  const prompt = promptInput.value.trim();
+  if (!prompt) return alert('Please enter a prompt');
+
+  resultEl.textContent = 'Generating...';
+
   try {
-    const res = await fetch('/api/hello');
+    const res = await fetch(BACKEND_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
+    });
+
     const data = await res.json();
-    alert(data.message);
+    resultEl.textContent = data.result || 'No response';
   } catch (err) {
     console.error(err);
-    alert('Error fetching from backend (check server).');
+    resultEl.textContent = 'Error connecting to backend';
   }
 });
-
-// Replace this file with your real frontend JS.
