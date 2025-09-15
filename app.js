@@ -1,10 +1,8 @@
-// app.js (Ultimate AI App - GitHub Pages + Render ready)
-
 const generateBtn = document.getElementById('generateBtn');
 const promptInput = document.getElementById('prompt');
 const resultEl = document.getElementById('result');
 
-// Replace this URL with your actual Render backend URL
+// Final Render backend URL set করা
 const BACKEND_URL = 'https://ultimate-ai-app.onrender.com/api/generate';
 
 generateBtn.addEventListener('click', async () => {
